@@ -1,6 +1,7 @@
 // Include React
 var React = require("react");
 // Including the Link component from React Router to navigate within our application without full page reloads
+// link allows us to link to various rountes... to link to various paths
 var Link = require("react-router").Link;
 
 // Create the Main component

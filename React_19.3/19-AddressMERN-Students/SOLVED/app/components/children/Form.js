@@ -23,6 +23,8 @@ var Form = React.createClass({
     event.preventDefault();
 
     // Set the parent to have the search term
+      // child being passed method to update the parent
+      // updates parent using setTerm
     this.props.setTerm(this.state.term);
     this.setState({ term: "" });
   },

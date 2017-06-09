@@ -19,24 +19,42 @@ var Parent = React.createClass({
   },
 
   //  On load display the number of clicks
+    // executes only on load
+    // a lifecycle event built into React
   componentDidMount: function() {
     console.log("COMPONENT MOUNTED");
 
     // The moment the page renders on page load, we will retrieve the previous click count.
     // We will then utilize that click count to change the value of the click state.
+      // this is a method that we defined... middleware
+      // this is making an axios.get request
+      // React making request of server via axios
+      // getting info from the api
+      // get all info from the click collection
+      // when you get it back there is a promise
     helpers.getClicks()
       .then(function(response) {
         // Using a ternary operator we can set newClicks to the number of clicks in our response object
         // If we don't have any clicks in our database, set newClicks to 0
+          // ternary operator
+          // if response.data.length is true then the first statement is the value of newClicks
+          // if false then newClicks is equal to 0
+          // standard ternary conditional operator
         var newClicks = response.data.length ? response.data[0].clicks : 0;
+
+        // setter built into React... setting state
         this.setState({
           clicks: newClicks
         });
         console.log("RESULTS", response);
         console.log("Saved clicks", newClicks);
+
+        // binds the lexical scope to the component
+          // this nested one level deep refers to the object
       }.bind(this));
   },
   // Whenever our component updates, the code inside componentDidUpdate is run
+    // another component lifecycle built into React
   componentDidUpdate: function(prevState) {
     console.log("COMPONENT UPDATED");
 
@@ -44,6 +62,7 @@ var Parent = React.createClass({
     if (prevState.clicks !== this.state.clicks) {
 
       // If it does, then update the clickcount in MongoDB
+        // axios saving info to the server
       helpers.saveClicks({ clickID: this.state.clickID, clicks: this.state.clicks })
         .then(function() {
           console.log("Posted to MongoDB");
@@ -52,6 +71,7 @@ var Parent = React.createClass({
   },
   // Whenever the button is clicked we'll use setState to add to the clickCounter
   // Note the syntax for setting the state
+    // this refers to the component object
   handleClick: function() {
     this.setState({ clicks: this.state.clicks + 1 });
   },

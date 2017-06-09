@@ -2,6 +2,7 @@
 var React = require("react");
 
 // Include the react-router module
+// will refer to main component that contains all routes
 var router = require("react-router");
 
 // Include the Route component for displaying individual routes
@@ -28,6 +29,9 @@ var Chat = require("../components/Chat");
 module.exports = (
 
   // The high level component is the Router component
+    // embedded JavaScript ... brackets tell us this
+    // when at root path we render the Main component
+    // we have main rountes and subroutes here
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
 

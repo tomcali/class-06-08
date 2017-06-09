@@ -56,7 +56,7 @@ var Main = React.createClass({
       }
     }.bind(this));
   },
-  // This function allows childrens to update the parent.
+  // This function allows children to update the parent.
   setTerm: function(term) {
     this.setState({ searchTerm: term });
   },

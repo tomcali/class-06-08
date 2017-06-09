@@ -14,6 +14,8 @@ var helper = {
 
     // Figure out the geolocation
     var queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + location + "&pretty=1&key=" + geocodeAPI;
+
+    // return within return... info bubbles up
     return axios.get(queryURL).then(function(response) {
       // If get get a result, return that result's formatted address property
       if (response.data.results[0]) {
@@ -25,6 +27,7 @@ var helper = {
   },
 
   // This function hits our own server to retrieve the record of query results
+    // gets info from server
   getHistory: function() {
     return axios.get("/api");
   },
